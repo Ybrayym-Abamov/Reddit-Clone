@@ -1,6 +1,18 @@
 # Reddit Clone
 This is our last capstone project at Kenzie Academy and we have decided to make a django made version of reddit
 
+# Usage
+To run the program: <br/>
+    Install the [poetry](https://python-poetry.org/docs/) package manager,
+    and when you're ready, simply run:
+
+```zsh
+poetry install
+```
+```zsh
+poetry shell
+```
+
 # Kenzie Academy Requirements
 As we wrap up our time in Python, we'll finish up with one project to show off our newfound mastery of the language and all the stuff we've covered. This is to be a several-week capstone project, done in teams, where you take an existing website or service and create a reasonable (back-end heavy) clone of it.
 
@@ -21,7 +33,7 @@ The submission is a link to the primary repo that you were using as a team.
 • At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
     <p>
-     * • BooleanField <br/>
+&nbsp;• BooleanField <br/>
     • CharField <br/>
     • DateField <br/>
     • DatetimeField <br/>
@@ -31,19 +43,6 @@ The submission is a link to the primary repo that you were using as a team.
     • URLField
     </p>
 • At least one view has additional arguments passed via url path
-
-
-# Usage
-To run the program: <br/>
-    Install the [poetry](https://python-poetry.org/docs/) package manager,
-    and when you're ready, simply run:
-
-```zsh
-poetry install
-```
-```zsh
-poetry shell
-```
 
 # Authors and acknowledgment:
 • [Janelle_Kuhns](https://github.com/JanelleRK) <br/>
