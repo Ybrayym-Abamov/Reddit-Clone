@@ -20,6 +20,7 @@ The submission is a link to the primary repo that you were using as a team.
 • All models are registered with the admin interface
 • At least three database queryset methods used: all(), get(), filter()
 • At least five fields of the following list are used among all models: <br/>
+    <p>
     BooleanField <br/>
     CharField <br/>
     DateField <br/>
@@ -27,7 +28,7 @@ The submission is a link to the primary repo that you were using as a team.
     FloatField <br/>
     EmailField <br/>
     TextField <br/>
-    URLField
+    URLField</p>
 • At least one view has additional arguments passed via url path
 
 
