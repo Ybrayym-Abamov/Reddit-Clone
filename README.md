@@ -3,7 +3,7 @@ Django made version of reddit
 
 
 # Usage
-To run the program:
+To run the program: <br/>
     Install the [poetry](https://python-poetry.org/docs/) package manager,
     and when you're ready, simply run:
 
