@@ -33,7 +33,7 @@ The submission is a link to the primary repo that you were using as a team.
 • At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
     <p>
-&nbsp;• BooleanField <br/>
+&nbsp;  • BooleanField <br/>
     • CharField <br/>
     • DateField <br/>
     • DatetimeField <br/>
