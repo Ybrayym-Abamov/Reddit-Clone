@@ -12,16 +12,16 @@ Please make sure to read the rubric and be ready to show off items that fit the 
 
 The submission is a link to the primary repo that you were using as a team.
 
-• At least three (3) class-based views
-• Secrets are not committed to VCS
-• All network requests have sufficient exception handling for 4xx and 5xx responses
-• All views are DRY with all helpers factored out to appropriate modules
-• At least one simple form and one model form
-• All models are registered with the admin interface
-• At least three database queryset methods used: all(), get(), filter()
+• At least three (3) class-based views <br/>
+• Secrets are not committed to VCS <br/>
+• All network requests have sufficient exception handling for 4xx and 5xx responses <br/>
+• All views are DRY with all helpers factored out to appropriate modules <br/>
+• At least one simple form and one model form <br/>
+• All models are registered with the admin interface <br/>
+• At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
     <p>
-    * • BooleanField <br/>
+    • BooleanField <br/>
     • CharField <br/>
     • DateField <br/>
     • DatetimeField <br/>
