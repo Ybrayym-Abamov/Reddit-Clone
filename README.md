@@ -4,8 +4,8 @@ Django made version of reddit
 
 # Usage
 To run the program:
-    Install the [poetry](https://python-poetry.org/docs/) package manager
-    When you're good to go, simply run:
+    Install the [poetry](https://python-poetry.org/docs/) package manager,
+    and when you're ready, simply run:
 
 ```zsh
 poetry install
