@@ -7,12 +7,12 @@ To run the program:
     Install the [poetry](https://python-poetry.org/docs/) package manager
     When you're good to go, simply run:
 
-    ```zsh
-    poetry install
-    ```
-    ```zsh
-    poetry shell
-    ```
+```zsh
+poetry install
+```
+```zsh
+poetry shell
+```
 
 # Authors and acknowledgment:
 [Janelle_Kuhns](https://github.com/JanelleRK) <br/>
