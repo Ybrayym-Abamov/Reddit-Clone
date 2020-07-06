@@ -24,6 +24,8 @@ Please make sure to read the rubric and be ready to show off items that fit the 
 
 The submission is a link to the primary repo that you were using as a team.
 
+The rubric: <br/>
+
 • At least three (3) class-based views <br/>
 • Secrets are not committed to VCS <br/>
 • All network requests have sufficient exception handling for 4xx and 5xx responses <br/>
