@@ -33,14 +33,14 @@ The submission is a link to the primary repo that you were using as a team.
 • At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
     <p>
-&nbsp; • BooleanField <br/>
-&nbsp; • CharField <br/>
-&nbsp; • DateField <br/>
-&nbsp; • DatetimeField <br/>
-&nbsp; • FloatField <br/>
-&nbsp; • EmailField <br/>
-&nbsp; • TextField <br/>
-&nbsp; • URLField
+&nbsp;  • BooleanField <br/>
+&nbsp;  • CharField <br/>
+&nbsp;  • DateField <br/>
+&nbsp;  • DatetimeField <br/>
+&nbsp;  • FloatField <br/>
+&nbsp;  • EmailField <br/>
+&nbsp;  • TextField <br/>
+&nbsp;  • URLField
     </p>
 • At least one view has additional arguments passed via url path
 
