@@ -15,7 +15,7 @@ poetry shell
 ```
 
 # Authors and acknowledgment:
-[Janelle_Kuhns](https://github.com/JanelleRK) <br/>
-[Detrich_Schilling](https://github.com/Detrich) <br/>
-[Christian_Rojas](https://github.com/cjrojas72) <br/>
-[Ybrayym_Abamov](https://github.com/Ybrayym-Abamov)
+• [Janelle_Kuhns](https://github.com/JanelleRK) <br/>
+• [Detrich_Schilling](https://github.com/Detrich) <br/>
+• [Christian_Rojas](https://github.com/cjrojas72) <br/>
+• [Ybrayym_Abamov](https://github.com/Ybrayym-Abamov)
