@@ -20,6 +20,8 @@ The submission is a link to the primary repo that you were using as a team.
 • All models are registered with the admin interface <br/>
 • At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
+
+###Example
     <p>
     • BooleanField <br/>
     • CharField <br/>
