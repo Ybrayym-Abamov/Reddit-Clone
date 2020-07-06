@@ -32,20 +32,20 @@ The submission is a link to the primary repo that you were using as a team.
 • All models are registered with the admin interface <br/>
 • At least three database queryset methods used: all(), get(), filter() <br/>
 • At least five fields of the following list are used among all models: <br/>
-    <p>
-&nbsp;&nbsp;  • BooleanField <br/>
-&nbsp;&nbsp;  • CharField <br/>
-&nbsp;&nbsp;  • DateField <br/>
-&nbsp;&nbsp;  • DatetimeField <br/>
-&nbsp;&nbsp;  • FloatField <br/>
-&nbsp;&nbsp;  • EmailField <br/>
-&nbsp;&nbsp;  • TextField <br/>
-&nbsp;&nbsp;  • URLField
-    </p>
+            <p>
+&nbsp;&nbsp; • BooleanField <br/>
+&nbsp;&nbsp; • CharField <br/>
+&nbsp;&nbsp; • DateField <br/>
+&nbsp;&nbsp; • DatetimeField <br/>
+&nbsp;&nbsp; • FloatField <br/>
+&nbsp;&nbsp; • EmailField <br/>
+&nbsp;&nbsp; • TextField <br/>
+&nbsp;&nbsp; • URLField
+            </p>
 • At least one view has additional arguments passed via url path
 
 # Authors and acknowledgment:
 • [Janelle_Kuhns](https://github.com/JanelleRK) <br/>
-• [Detrich_Schilling](https://github.com/Detrich) <br/>
 • [Christian_Rojas](https://github.com/cjrojas72) <br/>
+• [Detrich_Schilling](https://github.com/Detrich) <br/>
 • [Ybrayym_Abamov](https://github.com/Ybrayym-Abamov)
