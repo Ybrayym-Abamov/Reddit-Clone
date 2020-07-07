@@ -5,7 +5,6 @@ from posts.models import Post
 from authentication.models import RedditUser
 
 
-# Create your models here.
 class Comment(MPTTModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     body = models.CharField(max_length=4000)
@@ -14,7 +13,8 @@ class Comment(MPTTModel):
     downvotes = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
     date_created = models.DateField(default=timezone.now)
-    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    parent = TreeForeignKey('self', on_delete=models.CASCADE,
+                            null=True, blank=True, related_name='children')
 
     class MPTTMeta:
         order_insertion_by = ['body']
