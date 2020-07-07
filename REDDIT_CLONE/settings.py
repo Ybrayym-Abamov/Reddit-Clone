@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'comments',
     'posts',
     'subreddit',
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
