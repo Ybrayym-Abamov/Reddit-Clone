@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mptt',
-]
+    # our apps
+    'authentication',
+    'comments',
+    'posts',
+    'subreddit',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
