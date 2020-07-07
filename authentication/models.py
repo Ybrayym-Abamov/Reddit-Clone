@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from subreddit.models import SubReddit
-# Create your models here.
+
 
 class RedditUser(AbstractUser):
     karma = models.IntegerField(default=0)

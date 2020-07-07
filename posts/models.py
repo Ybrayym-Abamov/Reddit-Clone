@@ -16,4 +16,3 @@ class Post(models.Model):
     subreddit = models.ForeignKey(SubReddit, on_delete=models.CASCADE)
     comments = models.ManyToManyField(Comment, related_name='comments')
 
-
