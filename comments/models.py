@@ -8,7 +8,7 @@ from authentication.models import RedditUser
 # Create your models here.
 class Comment(MPTTModel):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    body = models.CharField(default=4000)
+    body = models.CharField(max_length=4000)
     user = models.ForeignKey(RedditUser, on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
@@ -18,3 +18,4 @@ class Comment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['body']
+        level_attr = 'mptt_level'
