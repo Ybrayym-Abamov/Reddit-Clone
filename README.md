@@ -13,7 +13,7 @@ poetry install
 poetry shell
 ```
 
-# Kenzie Academy Requirements
+# Kenzie Academy requirements
 As we wrap up our time in Python, we'll finish up with one project to show off our newfound mastery of the language and all the stuff we've covered. This is to be a several-week capstone project, done in teams, where you take an existing website or service and create a reasonable (back-end heavy) clone of it.
 
 What we're looking for is a project that can be done in a team environment with approximately three members. You will decide (as a group) the project that you want to do and you as a team will be responsible for breaking the project into manageable sections / tickets.

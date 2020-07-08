@@ -13,4 +13,3 @@ class Post(models.Model):
     downvotes = models.IntegerField(default=0)
     score = models.IntegerField(default=0)
     subreddit = models.ForeignKey(SubReddit, on_delete=models.CASCADE)
-
