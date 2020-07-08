@@ -9,11 +9,11 @@ class LoginForm(forms.Form):
 
 
 class SignUpForm(UserCreationForm):
-    model = RedditUser
-    fields = (
-        'username',
-        'email',
-        'password1',
-        #'password2 - TO DO FOR VERIFICATION
-
-    )
+    class Meta:
+        model = RedditUser
+        fields = (
+            'username',
+            'email',
+            'password1',
+            # 'password2 - TO DO FOR VERIFICATION
+        )
