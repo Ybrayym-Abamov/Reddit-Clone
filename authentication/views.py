@@ -1,10 +1,11 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
 from authentication.forms import LoginForm, SignUpForm
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
+from subreddit.models import SubReddit
 
 
 class LoginView(View):
@@ -49,7 +50,8 @@ class SignUpView(View):
 
 
 def index(request):
-    return render(request, 'main.html')
+    subreddits = SubReddit.objects.all()
+    return render(request, 'main.html', {'subreddits': subreddits})
 
 
 class LogoutView(View):
