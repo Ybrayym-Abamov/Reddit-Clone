@@ -10,6 +10,7 @@ media
 
 # Distribution / packaging
 .Python
+secrets.py
 build/
 develop-eggs/
 dist/

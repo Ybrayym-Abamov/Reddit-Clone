@@ -1,7 +1,8 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
+from django.shortcuts import render, reverse, HttpResponseRedirect, HttpResponse
+from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
-from authentication.forms import LoginForm
+from authentication.forms import LoginForm, SignUpForm
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
 
@@ -27,12 +28,31 @@ class LoginView(View):
 
 class SignUpView(View):
     def get(self, request):
-        return render(request, 'signup.html', {'form': UserCreationForm()})
+        form = SignUpForm()
+        return render(request, 'signup.html', {'form': form})
 
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
+        if form.errors:
+            messages.add_message(request, messages.INFO, 'Password invalid')
         if form.is_valid():
-            RedditUser = form.save()
-            return redirect(reverse('login'))
-
+            data = form.cleaned_data
+            new_user = RedditUser.objects.create_user(
+                username = data['username'],
+                email = data['email'],
+            )
+            new_user.save()
+            login(request, new_user)
+            return HttpResponseRedirect(reverse('login'))
+        form = SignUpForm()
         return render(request, 'signup.html', {'form': form})
+
+
+def index(request):
+    return render(request, 'main.html')
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(reverse('login'))
