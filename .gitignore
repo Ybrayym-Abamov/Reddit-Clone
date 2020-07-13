@@ -2,7 +2,6 @@
 *.log
 *.pot
 *.pyc
-*.vscode
 __pycache__/
 local_settings.py
 db.sqlite3
@@ -62,3 +61,4 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*.vscode
