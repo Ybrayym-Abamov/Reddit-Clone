@@ -16,8 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication.urls import urlpatterns as auth_urls
+from django.shortcuts import render
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 urlpatterns += auth_urls
+
+
+def url_checker(request):
+    for url in urlpatterns:
+        if url not in urlpatterns:
+            return render(request, '404.html')

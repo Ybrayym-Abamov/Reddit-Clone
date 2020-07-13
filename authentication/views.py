@@ -36,19 +36,3 @@ class SignUpView(View):
             return redirect(reverse('login'))
 
         return render(request, 'signup.html', {'form': form})
-
-
-def error_404_view(request, exception):
-    return render(request, '404.html')
-
-
-def error_403_view(request, exception):
-    return render(request, '403.html')
-
-
-def error_400_view(request, exception):
-    return render(request, '400.html')
-
-
-def error_500_view(request, exception):
-    return render(request, '500.html')
