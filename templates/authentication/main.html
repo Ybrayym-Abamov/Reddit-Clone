@@ -1,3 +1,10 @@
 <h1>SubReddit</h1>
 
 <a href="logout/">Logout</a>
+
+{% for subreddit in subreddits %}
+ <ul>
+     <li>{{ subreddit.name }}</li>
+ </ul>
+
+{% endfor %}
