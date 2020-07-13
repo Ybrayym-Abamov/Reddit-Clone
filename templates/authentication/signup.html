@@ -4,7 +4,18 @@
 </head>
 
 <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Signup here...">
+        {% csrf_token %}
+        {{ form.as_p }}
+    {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <span style="color:red">
+        {{ message }}
+    </span>
+
+    {% endfor %}
+</ul>
+{% endif %}
+
+        <input type="submit" value="Signup here...">
 </form>

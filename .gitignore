@@ -11,6 +11,7 @@ media
 
 # Distribution / packaging
 .Python
+/reddit_clone/secrets.py
 build/
 develop-eggs/
 dist/

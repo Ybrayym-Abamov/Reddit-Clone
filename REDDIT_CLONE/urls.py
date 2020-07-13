@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path
 from authentication.urls import urlpatterns as auth_urls
 from django.shortcuts import render
+from subreddit.urls import urlpatterns as subreddit_urls
+from posts.urls import urlpatterns as posts_urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 urlpatterns += auth_urls
+urlpatterns += subreddit_urls
+urlpatterns += posts_urls
 
 
 def url_checker(request):

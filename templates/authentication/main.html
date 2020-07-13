@@ -3,3 +3,11 @@
     <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
 <h1>SubReddit</h1>
+
+<a href="logout/">Logout</a>
+
+{% for subreddit in subreddits %}
+ <ul>
+     <li>{{ subreddit.name }}</li>
+ </ul>
+{% endfor %}
