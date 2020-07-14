@@ -25,6 +25,8 @@ urlpatterns = [
 urlpatterns += auth_urls
 urlpatterns += subreddit_urls
 urlpatterns += posts_urls
+
+
 def url_checker(request):
     for url in urlpatterns:
         if url not in urlpatterns:
