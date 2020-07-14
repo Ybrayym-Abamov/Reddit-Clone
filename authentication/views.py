@@ -52,7 +52,7 @@ class SignUpView(View):
 
 def index(request):
     posts = Post.objects.all()
-    return render(request, 'main.html', {'posts': posts})
+    return render(request, 'subreddit.html', {'posts': posts})
 
 
 
