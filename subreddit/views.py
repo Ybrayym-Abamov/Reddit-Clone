@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, HttpResponseRedirect
 from subreddit.models import SubReddit
 from subreddit.forms import AddSubRedditForm
 from authentication.models import RedditUser
+from posts.models import Post
 from subreddit.models import Moderator
 
 
@@ -28,4 +29,8 @@ def add_subreddit(request):
 
     return render(request, html, {"form": form})
 
+def subredditview(request, name):
+    subreddit = SubReddit.objects.get(name=name)
+    posts = Post.objects.filter(subreddit=subreddit.id)
+    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts} )
 
