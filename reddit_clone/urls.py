@@ -19,7 +19,6 @@ from django.shortcuts import render
 from authentication.urls import urlpatterns as auth_urls
 from subreddit.urls import urlpatterns as subreddit_urls
 from posts.urls import urlpatterns as posts_urls
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
