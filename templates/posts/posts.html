@@ -1,0 +1,18 @@
+<h1>All posts:</h1>
+
+{% for post in posts %}
+<h3>
+   <ul>
+       <h3>
+           <li>{{ post.title }}
+       </h3>
+            <h4>Subreddit: {{post.subreddit.name}}</h4>
+                <button>
+                    <a href="addcomment/">Add a comment</a>
+                </button></li>
+   </ul>
+
+</h3>
+
+
+{% endfor %}
