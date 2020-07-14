@@ -13,3 +13,5 @@ class SubReddit(models.Model):
     description = models.CharField(max_length=200)
     subscriber = models.ManyToManyField(RedditUser, related_name='user')
     moderator = models.ManyToManyField(Moderator, related_name='moderator')
+    def __str__(self):
+        return self.name

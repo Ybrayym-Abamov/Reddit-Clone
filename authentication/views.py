@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
 from authentication.forms import LoginForm, SignUpForm
+from posts.models import Post
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
 from subreddit.models import SubReddit
@@ -50,11 +51,12 @@ class SignUpView(View):
 
 
 def index(request):
-    subreddits = SubReddit.objects.all()
-    return render(request, 'main.html', {'subreddits': subreddits})
+    posts = Post.objects.all()
+    return render(request, 'main.html', {'posts': posts})
+
 
 
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('homepage'))

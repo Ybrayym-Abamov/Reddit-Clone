@@ -1,18 +1,21 @@
 <head>
-    <title>Signup</title>
+    <title>Reddit</title>
     <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
-<h1>SubReddit</h1>
-
+<h1>Reddit</h1>
+{% if user.is_authenticated %}
 <a href="logout/">Logout</a>
-
-{% for subreddit in subreddits %}
+{%else%}
+<a href="login/">Login</a>
+{%endif%}
+{% for post in posts %}
 <h3>
     <ul>
-     <li>{{ subreddit.name }}</li><button><a href="addpost/">Add a post</a></button>
+     <li><a href="post/{{post.id}}">{{ post.title }}</a> - <a href="/r/{{post.subreddit}}">{{ post.subreddit }}</a></li>
+
  </ul>
 </h3>
 <ul>
-    <li>{{ subreddit.name }}</li>
+    {{post.body}}
 </ul>
 {% endfor %}

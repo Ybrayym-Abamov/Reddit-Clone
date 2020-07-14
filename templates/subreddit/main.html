@@ -1,0 +1,10 @@
+{% for subreddit in subreddits %}
+<h3>
+    <ul>
+     <li>{{ subreddit.name }}</li><button><a href="addpost/">Add a post</a></button>
+ </ul>
+</h3>
+<ul>
+    <li>{{ subreddit.name }}</li>
+</ul>
+{% endfor %}
