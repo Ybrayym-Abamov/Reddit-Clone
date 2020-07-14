@@ -1,17 +1,21 @@
+<head>
+    <title>Signup</title>
+    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+</head>
+
 <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    {% csrf_token %}
+    {{ form.as_p }}
     {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <span style="color:red">
-        {{ message }}
-    </span>
+    <ul class="messages">
+        {% for message in messages %}
+        <span style="color:red">
+            {{ message }}
+        </span>
 
-    {% endfor %}
-</ul>
-{% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
 
-        <input type="submit" value="Signup here...">
+    <input type="submit" value="Signup here...">
 </form>
-

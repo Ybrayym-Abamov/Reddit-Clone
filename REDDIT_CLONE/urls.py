@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.shortcuts import render
 from authentication.urls import urlpatterns as auth_urls
 from subreddit.urls import urlpatterns as subreddit_urls
 from posts.urls import urlpatterns as posts_urls
-
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 urlpatterns += auth_urls
 urlpatterns += subreddit_urls
 urlpatterns += posts_urls
+def url_checker(request):
+    for url in urlpatterns:
+        if url not in urlpatterns:
+            return render(request, '404.html')
