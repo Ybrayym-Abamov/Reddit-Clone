@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, HttpResponseRedirect
 from posts.models import Post
 from posts.forms import AddPostForm
 from authentication.models import RedditUser
+from django.contrib.auth.decorators import login_required
 from subreddit.models import SubReddit
 
 
@@ -29,25 +30,26 @@ def add_post(request):
 
     return render(request, html, {"form": form})
 
-
+@login_required
 def up_vote(request, id):
     #http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
     up_post = Post.objects.get(id=id)
-    up_post.up_vote += 1
-    up_post.sum_of_votes += 1
+    up_post.upvotes += 1
+    up_post.score += 1
     up_post.save()
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+
+@login_required
 def down_vote(request, id):
     down_post = Post.objects.get(id=id)
-    down_post.down_vote += 1
-    down_post.sum_of_votes -= 1
+    down_post.downvotes += 1
+    down_post.score -= 1
     down_post.save()
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def all_posts_view(request):
-    posts = Post.objects.all().order_by('date_created')
-    return render(request, 'posts.html', {'posts':posts})
-
+def postview(request,id,name):
+    post = Post.objects.get(id=id)
+    return render(request,'post.html',{'post':post})

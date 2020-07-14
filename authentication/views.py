@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect
+from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
@@ -25,7 +25,7 @@ class LoginView(View):
                 )
             if user:
                 login(request, user)
-        return HttpResponseRedirect(reverse('homepage'))
+        return redirect(self.request.GET.get('next'),reverse('homepage'))
 
 
 class SignUpView(View):
@@ -59,4 +59,4 @@ def index(request):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('homepage'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
