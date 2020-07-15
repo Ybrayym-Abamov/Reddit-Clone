@@ -14,8 +14,8 @@ def add_subreddit(request):
         if form.is_valid():
             data = form.cleaned_data
             SubReddit.objects.create(
-                name = data['name'],
-                description = data['description'],
+                name=data['name'],
+                description=data['description'],
             )
             subscriber = RedditUser.objects.get(id=request.user.id)
             moderator = Moderator.objects.get(user=request.user)
@@ -29,8 +29,8 @@ def add_subreddit(request):
 
     return render(request, html, {"form": form})
 
+
 def subredditview(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id)
-    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts} )
-
+    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts})
