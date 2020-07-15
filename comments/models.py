@@ -19,3 +19,6 @@ class Comment(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['body']
         level_attr = 'mptt_level'
+
+    def __str__(self):
+        return self.body
