@@ -14,14 +14,14 @@ def add_post(request):
         if form.is_valid():
             data = form.cleaned_data
             Post.objects.create(
-                title = data['title'],
-                body = data['body'],
+                title=data['title'],
+                body=data['body'],
             )
             author = RedditUser.objects.get(id=request.user.id)
-            #subreddit = SubReddit.objects.get(name=data['name'])
+            # subreddit = SubReddit.objects.get(name=data['name'])
             post = Post.objects.get(title=data['title'])
             post.author.add(author)
-            #post.subreddit.add(subreddit)
+            # post.subreddit.add(subreddit)
             post.save()
             return HttpResponseRedirect(reverse('homepage'))
 
@@ -31,7 +31,7 @@ def add_post(request):
 
 
 def up_vote(request, id):
-    #http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
+    # http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
     up_post = Post.objects.get(id=id)
     up_post.up_vote += 1
     up_post.sum_of_votes += 1
@@ -49,5 +49,4 @@ def down_vote(request, id):
 
 def all_posts_view(request):
     posts = Post.objects.all().order_by('date_created')
-    return render(request, 'posts.html', {'posts':posts})
-
+    return render(request, 'posts.html', {'posts': posts})

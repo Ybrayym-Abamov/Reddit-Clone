@@ -40,8 +40,8 @@ class SignUpView(View):
         if form.is_valid():
             data = form.cleaned_data
             new_user = RedditUser.objects.create_user(
-                username = data['username'],
-                email = data['email'],
+                username=data['username'],
+                email=data['email'],
             )
             new_user.save()
             login(request, new_user)
@@ -53,7 +53,6 @@ class SignUpView(View):
 def index(request):
     posts = Post.objects.all()
     return render(request, 'subreddit.html', {'posts': posts})
-
 
 
 class LogoutView(View):
