@@ -30,6 +30,7 @@ def add_post(request):
 
     return render(request, html, {"form": form})
 
+
 @login_required
 def up_vote(request, id):
     # http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
@@ -38,7 +39,6 @@ def up_vote(request, id):
     up_post.score += 1
     up_post.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 
 
 @login_required
@@ -50,6 +50,6 @@ def down_vote(request, id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def postview(request,id,name):
+def postview(request, id, name):
     post = Post.objects.get(id=id)
-    return render(request,'post.html',{'post':post})
+    return render(request, 'post.html', {'post': post})
