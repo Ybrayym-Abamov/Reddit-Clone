@@ -54,8 +54,7 @@ def down_vote(request, id):
 def postview(request, id, name):
     post = Post.objects.get(id=id)
     comments = Comment.objects.filter(post=post)
-    html = "addcomment.html"
-
+    # This adds a comment to the post
     if request.method == "POST":
         form = AddCommentForm(request.POST)
         user = RedditUser.objects.get(id=request.user.id)
