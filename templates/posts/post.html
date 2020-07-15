@@ -4,10 +4,8 @@
 </head>
 <h1>Reddit</h1>
 {% if user.is_authenticated%}
-{{ user.username }}
 <a href="/logout?next={{ request.path }}">Logout</a>
 {%else%}
-{{ user.username }}
 <a href="/login?next={{ request.path }}">Login</a>
 {%endif%}
 
