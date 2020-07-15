@@ -4,8 +4,10 @@ from subreddit.forms import AddSubRedditForm
 from authentication.models import RedditUser
 from posts.models import Post
 from subreddit.models import Moderator
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def add_subreddit(request):
     html = "addsubreddit.html"
 
@@ -23,13 +25,14 @@ def add_subreddit(request):
             subreddit.subscriber.add(subscriber)
             subreddit.moderator.add(moderator)
             subreddit.save()
-            return HttpResponseRedirect(reverse('homepage'))
+        return HttpResponseRedirect(reverse('homepage'))
 
     form = AddSubRedditForm()
 
     return render(request, html, {"form": form})
 
 
+@login_required
 def subredditview(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id)
