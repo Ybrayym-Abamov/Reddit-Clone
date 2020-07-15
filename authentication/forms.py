@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
 
 
@@ -8,12 +7,13 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class SignUpForm(UserCreationForm):
+class SignUpForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = RedditUser
         fields = (
             'username',
             'email',
-            'password1',
-            'password2',
+
         )
+

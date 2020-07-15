@@ -19,6 +19,10 @@ def add_subreddit(request):
                 name=data['name'],
                 description=data['description'],
             )
+            Moderator.objects.get_or_create(
+                user=request.user,
+                is_moderator=True,
+            )
             subscriber = RedditUser.objects.get(id=request.user.id)
             moderator = Moderator.objects.get(user=request.user)
             subreddit = SubReddit.objects.get(name=data['name'])
