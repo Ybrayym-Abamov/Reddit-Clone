@@ -48,6 +48,6 @@ def down_vote(request, id):
 
 
 def all_posts_view(request):
-    posts = Post.objects.all().order_by('date_created')
+    posts = Post.objects.all().order_by('-date_created')
     return render(request, 'posts.html', {'posts':posts})
 
