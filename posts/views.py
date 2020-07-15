@@ -7,24 +7,24 @@ from subreddit.models import SubReddit
 
 
 # Create your views here.
-def add_post(request):
+def add_post(request, name):
     html = "addpost.html"
 
     if request.method == "POST":
         form = AddPostForm(request.POST)
+        author = RedditUser.objects.get(id=request.user.id)
+        subreddit = SubReddit.objects.get(name=name)
         if form.is_valid():
             data = form.cleaned_data
             Post.objects.create(
                 title=data['title'],
                 body=data['body'],
+                author=author,
+                subreddit=subreddit
             )
-            author = RedditUser.objects.get(id=request.user.id)
-            # subreddit = SubReddit.objects.get(name=data['name'])
             post = Post.objects.get(title=data['title'])
-            post.author.add(author)
-            # post.subreddit.add(subreddit)
             post.save()
-            return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(reverse('subreddit', kwargs={'name': name}))
 
     form = AddPostForm()
 
