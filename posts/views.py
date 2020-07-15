@@ -50,13 +50,6 @@ def down_vote(request, id):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-<<<<<<< HEAD
-def all_posts_view(request):
-    posts = Post.objects.all().order_by('-date_created')
-    return render(request, 'posts.html', {'posts':posts})
-
-=======
 def postview(request, id, name):
     post = Post.objects.get(id=id)
     return render(request, 'post.html', {'post': post})
->>>>>>> f900365ae2d5813b3b288a0bd69574cfe91bdbf6
