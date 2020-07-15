@@ -1,0 +1,16 @@
+{% for comment in comments %}
+<p>{{comment.body}}.</p>
+<p>{{comment.date_created}}
+<!--Setting up url redirection depending on if the user is logged in or not -->
+    <span>
+        {%if user %}
+     <button><a href="upvote/{{comment.id}}?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+        {{comment.score}}
+     <button><a href="downvote/{{comment.id}}?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+        {% else %}
+    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+        {{comment.score}}
+    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+        {%endif%}
+</span></p>
+{% endfor %}

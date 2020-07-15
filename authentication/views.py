@@ -19,13 +19,14 @@ class LoginView(View):
         if form.is_valid():
             data = form.cleaned_data
             user = authenticate(
-                request,
                 username=data['username'],
                 password=data['password']
                 )
+            print(data)
             if user:
                 login(request, user)
-        return redirect(self.request.GET.get('next'),reverse('homepage'))
+                return redirect(request.GET.get('next'),reverse('homepage'))
+        return render(request, 'login.html', {'form': form})
 
 
 class SignUpView(View):
@@ -42,12 +43,12 @@ class SignUpView(View):
             new_user = RedditUser.objects.create_user(
                 username=data['username'],
                 email=data['email'],
+                password=data['password']
             )
             new_user.save()
             login(request, new_user)
             return HttpResponseRedirect(reverse('login'))
-        form = SignUpForm()
-        return render(request, 'signup.html', {'form': form})
+
 
 
 def index(request):

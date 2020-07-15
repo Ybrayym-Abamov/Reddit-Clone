@@ -19,12 +19,14 @@ from django.shortcuts import render
 from authentication.urls import urlpatterns as auth_urls
 from subreddit.urls import urlpatterns as subreddit_urls
 from posts.urls import urlpatterns as posts_urls
+from comments.urls import urlpatterns as comments_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 urlpatterns += auth_urls
 urlpatterns += subreddit_urls
 urlpatterns += posts_urls
+urlpatterns += comments_urls
 
 
 def url_checker(request):

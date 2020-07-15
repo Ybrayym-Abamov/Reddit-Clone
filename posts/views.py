@@ -4,6 +4,8 @@ from posts.forms import AddPostForm
 from authentication.models import RedditUser
 from django.contrib.auth.decorators import login_required
 from subreddit.models import SubReddit
+from comments.models import Comment
+from comments.forms import AddCommentForm
 
 
 # Create your views here.
@@ -33,7 +35,6 @@ def add_post(request, name):
 
 @login_required
 def up_vote(request, id):
-    # http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
     up_post = Post.objects.get(id=id)
     up_post.upvotes += 1
     up_post.score += 1
@@ -52,4 +53,23 @@ def down_vote(request, id):
 
 def postview(request, id, name):
     post = Post.objects.get(id=id)
-    return render(request, 'post.html', {'post': post})
+    comments = Comment.objects.filter(post=post)
+    html = "addcomment.html"
+
+    if request.method == "POST":
+        form = AddCommentForm(request.POST)
+        user = RedditUser.objects.get(id=request.user.id)
+        post = Post.objects.get(id=id)
+        if form.is_valid():
+            data = form.cleaned_data
+            Comment.objects.create(
+                body=data['body'],
+                user=user,
+                post=post
+            )
+            comment = Comment.objects.get(body=data['body'])
+            comment.save()
+            return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
+
+    form = AddCommentForm()
+    return render(request, 'post.html', {'post': post, 'comments':comments, 'form':form})
