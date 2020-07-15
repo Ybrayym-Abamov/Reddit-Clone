@@ -47,7 +47,7 @@ class SignUpView(View):
             )
             new_user.save()
             login(request, new_user)
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('homepage'))
 
 
 
