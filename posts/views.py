@@ -26,7 +26,8 @@ def add_post(request, name):
             )
             post = Post.objects.get(title=data['title'])
             post.save()
-            return HttpResponseRedirect(reverse('subreddit', kwargs={'name': name}))
+            return HttpResponseRedirect(reverse('subreddit',
+                                        kwargs={'name': name}))
 
     form = AddPostForm()
 
@@ -66,9 +67,10 @@ def postview(request, id, name):
                 user=user,
                 post=post
             )
-            comment = Comment.objects.get(body=data['body'])
-            comment.save()
-            return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
+            Comment.objects.filter(body=data['body'])
+            return HttpResponseRedirect(reverse('postview',
+                                        kwargs={'name': name, 'id': id}))
 
     form = AddCommentForm()
-    return render(request, 'post.html', {'post': post, 'comments':comments, 'form':form})
+    return render(request, 'post.html',
+                  {'post': post, 'comments': comments, 'form': form})
