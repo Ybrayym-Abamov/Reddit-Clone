@@ -67,9 +67,15 @@ def postview(request, id, name):
                 user=user,
                 post=post
             )
-            Comment.objects.filter(body=data['body'])
-            return HttpResponseRedirect(reverse('postview',
-                                        kwargs={'name': name, 'id': id}))
+            try:
+                parent_id = request.POST['comment_id']
+            except:
+                pass
+            comment = Comment.objects.filter(body=data['body'])
+            comment.parent = comments.get(id=parent_id)
+            comment.save()
+            return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
+
 
     form = AddCommentForm()
     return render(request, 'post.html',
