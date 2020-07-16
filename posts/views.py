@@ -47,7 +47,33 @@ def down_vote(request, id):
     return HttpResponseRedirect(reverse('homepage'))
 
 
+<<<<<<< Updated upstream
 def all_posts_view(request):
     posts = Post.objects.all().order_by('date_created')
     return render(request, 'posts.html', {'posts':posts})
+=======
+def postview(request, id, name):
+    post = Post.objects.get(id=id)
+    comments = Comment.objects.filter(post=post)
+    # This adds a comment to the post
+    if request.method == "POST":
+        form = AddCommentForm(request.POST)
+        user = RedditUser.objects.get(id=request.user.id)
+        post = Post.objects.get(id=id)
+        if form.is_valid():
+            data = form.cleaned_data
+            Comment.objects.create(
+                body=data['body'],
+                user=user,
+                post=post
+            )
+            try:
+                parent_id = request.POST['comment_id']
+            except:
+                pass
+            comment = Comment.objects.get(body=data['body'])
+            comment.parent = comments.get(id=parent_id)
+            comment.save()
+            return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
+>>>>>>> Stashed changes
 

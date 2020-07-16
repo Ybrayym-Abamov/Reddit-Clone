@@ -29,3 +29,10 @@ def add_subreddit(request):
     return render(request, html, {"form": form})
 
 
+<<<<<<< Updated upstream
+=======
+def subredditview(request, name):
+    subreddit = SubReddit.objects.get(name=name)
+    posts = Post.objects.filter(subreddit=subreddit.id)
+    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts})
+>>>>>>> Stashed changes
