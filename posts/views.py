@@ -62,17 +62,20 @@ def postview(request, id, name):
         post = Post.objects.get(id=id)
         if form.is_valid():
             data = form.cleaned_data
+            parent_id = request.POST.get('comment_id')
+            if parent_id:
+                parent = comments.get(id=parent_id)
+            else:
+                parent = None
             Comment.objects.create(
                 body=data['body'],
                 user=user,
-                post=post
+                post=post,
+                parent=parent,
             )
-            comment = Comment.objects.filter(body=data['body'])
-            try:
-                parent_id = request.POST['comment_id']
-                comment.parent = comments.get(id=parent_id)
-            except:
-                pass
+
+
+
             return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
 
 

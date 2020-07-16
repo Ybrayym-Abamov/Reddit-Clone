@@ -17,7 +17,7 @@ class Comment(MPTTModel):
                             null=True, blank=True, related_name='children')
 
     class MPTTMeta:
-        order_insertion_by = ['body']
+        order_insertion_by = ['-body']
         level_attr = 'mptt_level'
 
     def __str__(self):
