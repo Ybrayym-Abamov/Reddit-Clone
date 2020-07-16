@@ -1,3 +1,4 @@
+
 {% load mptt_tags %}
 <ul class="root">
     {% recursetree comments %}
@@ -17,7 +18,12 @@
 </span>
     </p>
 {%if user.is_authenticated%}
-{% include 'templates/comments/addcomment.html' %}
+<form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="hidden" name="comment_id" value="{{ node.id }}">
+        <input type="submit" value="Add comment">
+    </form>
 {%endif%}
 
             {% if not node.is_leaf_node %}
