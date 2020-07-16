@@ -2,56 +2,56 @@ from django.shortcuts import render, reverse, HttpResponseRedirect
 from posts.models import Post
 from posts.forms import AddPostForm
 from authentication.models import RedditUser
+from django.contrib.auth.decorators import login_required
 from subreddit.models import SubReddit
+from comments.models import Comment
+from comments.forms import AddCommentForm
 
 
 # Create your views here.
-def add_post(request):
+def add_post(request, name):
     html = "addpost.html"
 
     if request.method == "POST":
         form = AddPostForm(request.POST)
+        author = RedditUser.objects.get(id=request.user.id)
+        subreddit = SubReddit.objects.get(name=name)
         if form.is_valid():
             data = form.cleaned_data
             Post.objects.create(
-                title = data['title'],
-                body = data['body'],
+                title=data['title'],
+                body=data['body'],
+                author=author,
+                subreddit=subreddit
             )
-            author = RedditUser.objects.get(id=request.user.id)
-            #subreddit = SubReddit.objects.get(name=data['name'])
             post = Post.objects.get(title=data['title'])
-            post.author.add(author)
-            #post.subreddit.add(subreddit)
             post.save()
-            return HttpResponseRedirect(reverse('homepage'))
+            return HttpResponseRedirect(reverse('subreddit',
+                                        kwargs={'name': name}))
 
     form = AddPostForm()
 
     return render(request, html, {"form": form})
 
 
+@login_required
 def up_vote(request, id):
-    #http://www.cs.virginia.edu/~evans/cs1120-f09/ps/project/django.html
     up_post = Post.objects.get(id=id)
-    up_post.up_vote += 1
-    up_post.sum_of_votes += 1
+    up_post.upvotes += 1
+    up_post.score += 1
     up_post.save()
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required
 def down_vote(request, id):
     down_post = Post.objects.get(id=id)
-    down_post.down_vote += 1
-    down_post.sum_of_votes -= 1
+    down_post.downvotes += 1
+    down_post.score -= 1
     down_post.save()
-    return HttpResponseRedirect(reverse('homepage'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-<<<<<<< Updated upstream
-def all_posts_view(request):
-    posts = Post.objects.all().order_by('date_created')
-    return render(request, 'posts.html', {'posts':posts})
-=======
 def postview(request, id, name):
     post = Post.objects.get(id=id)
     comments = Comment.objects.filter(post=post)
@@ -71,9 +71,12 @@ def postview(request, id, name):
                 parent_id = request.POST['comment_id']
             except:
                 pass
-            comment = Comment.objects.get(body=data['body'])
+            comment = Comment.objects.filter(body=data['body'])
             comment.parent = comments.get(id=parent_id)
             comment.save()
             return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
->>>>>>> Stashed changes
 
+
+    form = AddCommentForm()
+    return render(request, 'post.html',
+                  {'post': post, 'comments': comments, 'form': form})

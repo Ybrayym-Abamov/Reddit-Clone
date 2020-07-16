@@ -1,8 +1,9 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect
+from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.views import View
 from authentication.forms import LoginForm, SignUpForm
+from posts.models import Post
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
 from subreddit.models import SubReddit
@@ -18,13 +19,14 @@ class LoginView(View):
         if form.is_valid():
             data = form.cleaned_data
             user = authenticate(
-                request,
                 username=data['username'],
                 password=data['password']
                 )
+            print(data)
             if user:
                 login(request, user)
-        return HttpResponseRedirect(reverse('homepage'))
+                return redirect(request.GET.get('next'),reverse('homepage'))
+        return render(request, 'login.html', {'form': form})
 
 
 class SignUpView(View):
@@ -39,22 +41,22 @@ class SignUpView(View):
         if form.is_valid():
             data = form.cleaned_data
             new_user = RedditUser.objects.create_user(
-                username = data['username'],
-                email = data['email'],
+                username=data['username'],
+                email=data['email'],
+                password=data['password']
             )
             new_user.save()
             login(request, new_user)
-            return HttpResponseRedirect(reverse('login'))
-        form = SignUpForm()
-        return render(request, 'signup.html', {'form': form})
+            return HttpResponseRedirect(reverse('homepage'))
+
 
 
 def index(request):
-    subreddits = SubReddit.objects.all()
-    return render(request, 'main.html', {'subreddits': subreddits})
+    posts = Post.objects.all()
+    return render(request, 'main.html', {'posts': posts})
 
 
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
