@@ -22,14 +22,17 @@
         {% csrf_token %}
         {{ form.as_p }}
     <input type="hidden" name="comment_id" value="{{ node.id }}">
-        <input type="submit" value="Add comment">
+        <input type="submit" value="Reply to comment">
     </form>
 {%endif%}
 
             {% if not node.is_leaf_node %}
+            <blockquote class="blockquote">
                 <ul class="children">
                     {{ children }}
                 </ul>
+            </blockquote>
+
             {% endif %}
     {% endrecursetree %}
 </ul>
