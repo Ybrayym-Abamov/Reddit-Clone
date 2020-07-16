@@ -22,5 +22,3 @@ def down_vote(request, name, id, id2):
     down_post.score -= 1
     down_post.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
