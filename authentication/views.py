@@ -56,6 +56,16 @@ def index(request):
     return render(request, 'main.html', {'posts': posts})
 
 
+def new(request):
+    posts = Post.objects.all().order_by("-date_created")
+    return render(request, 'main.html', {'posts': posts})
+
+
+def hot(request):
+    posts = Post.objects.all().order_by("-score")
+    return render(request, 'main.html', {'posts': posts})
+
+
 class LogoutView(View):
     def get(self, request):
         logout(request)
