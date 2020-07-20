@@ -1,27 +1,29 @@
-
-<div class="card" style="width: 75rem">
+{% for post in posts %}
+<div class="card">
 
     <div class="card-body">
-        {% for post in posts %}
-<h3>
-    <ul>
-     <li><a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a> - <a href="/r/{{post.subreddit}}" >r/{{ post.subreddit }}</a></li>
- </ul>
-</h3>
-<ul>
-    {{post.body}}
-    <span>
-        {%if user.is_authenticated %}
-     <button><a href="/upvote/{{post.id}}?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{post.score}}
-     <button><a href="/downvote/{{post.id}}?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {% else %}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{post.score}}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {%endif%}
-    </span>
-</ul>
-{% endfor %}
+        <h3>
+            <ul>
+                <a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a>
+            </ul>
+        </h3>
+        <ul>
+            <span>
+                {%if user.is_authenticated %}
+                <button><a href="/upvote/{{post.id}}?next={{ request.path }}"
+                        style="text-decoration:none; color:green">⇧</a></button>
+                {{post.score}}
+                <button><a href="/downvote/{{post.id}}?next={{ request.path }}"
+                        style="text-decoration:none; color:red">⇩</a></button>
+                {% else %}
+                <button><a href="/login?next={{ request.path }}"
+                        style="text-decoration:none; color:green">⇧</a></button>
+                {{post.score}}
+                <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+                {%endif%}
+            </span>
+            Submitted on {{post.date_created}} by {{post.author}} from <a href="/r/{{post.subreddit}}">r/{{ post.subreddit }}</a>
+        </ul>
     </div>
 </div>
+{% endfor %}

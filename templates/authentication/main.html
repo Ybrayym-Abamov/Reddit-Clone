@@ -20,27 +20,46 @@
 <a href="/login?next={{ request.path }}">Login</a>
 {%endif%}
 
-{% if request.path == '/' %}
+<p>
+    {% if request.path == '/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary active"> <input type="radio" name="options" id="option1" checked> All </label>
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'"> Hot </label> 
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'"> New </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'">
+        Hot </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'">
+        New </label>
 </div>
+
 
 {% elif request.path == '/hot/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All </label>
-    <label class="btn btn-secondary active"> <input type="radio" name="options" id="option2" checked> Hot </label> 
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'"> New </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All
+    </label>
+    <label class="btn btn-secondary active"> <input type="radio" name="options" id="option2" checked> Hot </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'">
+        New </label>
 </div>
 
 {% elif request.path == '/new/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All </label>
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'"> Hot </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All
+    </label>
+    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'">
+        Hot </label>
     <label class="btn btn-secondary active"> <input type="radio" name="options" id="option3" checked> New </label>
 </div>
-
 {% endif %}
+</p>
 
-{% include 'templates/posts/posts.html' %}
+<div class="row">
+    <div class="col-8">
+        {% include 'templates/posts/posts.html' %}
+    </div>
+
+    <div class="col">
+        <h1>Subreddits ({{sub_r_count}})</h1>
+        {% for subreddit in subreddits %}
+        <p>{{subreddit}}</p>
+        {% endfor %}
+    </div>
+</div>
