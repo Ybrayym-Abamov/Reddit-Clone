@@ -1,9 +1,12 @@
 
+<div class="card" style="width: 75rem">
 
-{% for post in posts %}
+    <div class="card-body">
+        <h3 class="card-title">Recent Posts</h3>
+        {% for post in posts %}
 <h3>
     <ul>
-     <li><a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a> - <a href="/r/{{post.subreddit}}">{{ post.subreddit }}</a></li>
+     <li><a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a> - <a href="/r/{{post.subreddit}}" >r/{{ post.subreddit }}</a></li>
  </ul>
 </h3>
 <ul>
@@ -21,3 +24,5 @@
     </span>
 </ul>
 {% endfor %}
+    </div>
+</div>
