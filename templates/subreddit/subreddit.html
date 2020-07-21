@@ -61,11 +61,21 @@ Logout</a> <br />
   {% endif %}
       </div>
   </p>
-
-
+{% if request.path == current_path %}
+<div class="row">
       <div class="col-8" style="margin-left:20px">
 {% include 'templates/posts/posts.html' %}
           </div>
+
+    <div class="col-3">
+  {% if user.is_authenticated %}
+        <a href="addpost/" style="text-decoration:none;color:white;"><button type="button" class="btn btn-success" style="width:100%">Create Post</button></a>
+    {%endif%}
+        </div>
+</div>
+  {%else%}
+  {% include 'templates/posts/addpost.html' %}
+  {%endif%}
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

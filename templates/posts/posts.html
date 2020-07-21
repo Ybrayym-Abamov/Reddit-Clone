@@ -8,6 +8,9 @@
             </ul>
         </h3>
         <ul>
+
+
+
             <span>
                 {%if user.is_authenticated %}
                 <button><a href="/upvote/{{post.id}}?next={{ request.path }}"
@@ -15,9 +18,11 @@
                 {{post.score}}
                 <button><a href="/downvote/{{post.id}}?next={{ request.path }}"
                         style="text-decoration:none; color:red">⇩</a></button>
-                    {% if post.author == request.user %}
+                {%for moderator in moderators%}
+                    {% if post.author == request.user or request.user == moderator %}
                         <button><a href="/delete/{{post.id}}/" style="text-decoration: none; color: red">Delete</a></button>
                     {% endif%}
+                {%endfor%}
                 {% else %}
                 <button><a href="/login?next={{ request.path }}"
                         style="text-decoration:none; color:green">⇧</a></button>

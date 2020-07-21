@@ -1,6 +1,35 @@
-
 <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add comment">
-    </form>
+    {% csrf_token %}
+    <div id="hidden" style="display:none;">
+        {{ form.body }}
+    </div>
+    <button onclick="myFunction()" id="reply">Comment</button>
+    <p>
+    <input id="hiddenbutton" style="display:none;" type="submit" value="Add comment">
+</form>
+
+<script>
+
+  function myFunction() {
+      let x = document.getElementById("hidden");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+      let v = document.getElementById("hiddenbutton");
+      if (v.style.display === "none") {
+        v.style.display = "block";
+      } else {
+        v.style.display = "none";
+      }
+      let z = document.getElementById("reply");
+      if (z.style.display === "none") {
+        z.style.display = "block";
+      } else {
+        z.style.display = "none";
+      }
+
+}
+
+</script>

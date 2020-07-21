@@ -8,3 +8,4 @@ class AddCommentForm(forms.ModelForm):
         fields = [
             'body',
         ]
+        widgets = {'body': forms.Textarea(attrs={'rows':4, 'cols':80})}
