@@ -6,7 +6,7 @@ from authentication.forms import LoginForm, SignUpForm
 from posts.models import Post
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
-from subreddit.models import SubReddit
+from subreddit.models import SubReddit, FollowReddit
 
 
 class LoginView(View):
@@ -21,11 +21,11 @@ class LoginView(View):
             user = authenticate(
                 username=data['username'],
                 password=data['password']
-                )
+            )
             print(data)
             if user:
                 login(request, user)
-                return redirect(request.GET.get('next'),reverse('homepage'))
+                return redirect(request.GET.get('next'), reverse('homepage'))
         return render(request, 'login.html', {'form': form})
 
 
@@ -69,6 +69,11 @@ def hot(request):
     subreddits = SubReddit.objects.all()
     sub_r_count = SubReddit.objects.all().count()
     return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count})
+
+
+def following(request):
+    following = FollowReddit.objects.filter(user=request.user)
+    return render(request, 'main.html', {'posts': following})
 
 
 class LogoutView(View):
