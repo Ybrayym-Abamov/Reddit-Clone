@@ -12,14 +12,37 @@
     <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
 
-<h1><a href="/r/{{post.subreddit.name}}" style="text-decoration:none; color:black">r/{{post.subreddit.name}}</a></h1>
-{% if user.is_authenticated%}
-<a href="/logout?next={{ request.path }}">Logout</a>
+
+  <div class="row">
+  <div class="col-sm-3" align="center"><a href="/">Back to home</a>
+  <a href="/r/{{post.subreddit.name}}/">Back to Subreddit</a>
+  </div>
+    <div class="col-sm-6"></div>
+    <div class="col-sm-3">
+        {% if user.is_authenticated %}
+        Logged in as : {{user}}
+<a href="/logout?next={{ request.path }}">
+Logout</a> <br />
 {%else%}
 <a href="/login?next={{ request.path }}">Login</a>
 {%endif%}
-<a href="/">Home</a>
+    </div>
+  </div>
 
+        <hr style="margin:0;">
+  <div class="row" style="text-align:center">
+      <div class="col-1"></div>
+    <div class="col-lg-10" style="height:20vh;margin:0;width:100vw;"><h1 style="font-size:100px;">{{post.subreddit.name}}</h1></div>
+      <div class="col-1"></div>
+  </div>
+<hr>
+
+<div class="row">
+    <div class="col-2"></div>
+  <div class="card col-8">
+      <p></p>
+      <div class="card">
+          <div class="col-7">
 <h2>{{post.title}}</h2>
 <p>{{post.body}}</p>
 <p>{{post.date_created}}
@@ -35,11 +58,19 @@
     <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
         {%endif%}
 </span></p>
+
 {%if user.is_authenticated%}
 {% include 'templates/comments/addcomment.html' %}
 {%endif%}
-{% include 'templates/comments/comments.html' %}
+              </div>
+</div>
 
+  <p>
+    <div class="col-2"></div>
+      <div class="col-11">
+{% include 'templates/comments/comments.html' %}
+    </div>
+</div>
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
