@@ -82,3 +82,9 @@ def postview(request, id, name):
     form = AddCommentForm()
     return render(request, 'post.html',
                   {'post': post, 'comments': comments, 'form': form})
+
+
+def delete_view(request, id):
+    post = Post.objects.get(id=id)
+    post.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

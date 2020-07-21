@@ -52,14 +52,14 @@
 </p>
 
 <div class="row">
-    <div class="col-8">
+    <div class="col-9">
         {% include 'templates/posts/posts.html' %}
     </div>
 
     <div class="col">
         <h1>Subreddits ({{sub_r_count}})</h1>
         {% for subreddit in subreddits %}
-        <p>{{subreddit}}</p>
+        <p><a href="/r/{{subreddit.name}}/">{{subreddit}}</a></p>
         {% endfor %}
     </div>
 </div>
