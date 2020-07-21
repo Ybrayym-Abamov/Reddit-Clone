@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse, HttpResponseRedirect
-from subreddit.models import SubReddit
+from subreddit.models import SubReddit,Moderator
 from subreddit.forms import AddSubRedditForm
 from authentication.models import RedditUser
 from posts.models import Post
@@ -39,8 +39,13 @@ def add_subreddit(request):
 def subredditview(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id)
+    if request.user.is_authenticated:
+        moderators = Moderator.objects.filter(user=request.user)
+        moderators = [moderator.user for moderator in moderators]
+    else:
+        moderators = None
     current_path = f'/r/{subreddit.name}/'
-    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts, "current_path": current_path})
+    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts, "current_path": current_path,"moderators": moderators})
 
 
 def follow_subreddit(request, name):
@@ -65,12 +70,27 @@ def follow_subreddit(request, name):
 def subredditnew(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id).order_by("-date_created")
+    if request.user.is_authenticated:
+        moderators = Moderator.objects.filter(user=request.user)
+        moderators = [moderator.user for moderator in moderators]
+    else:
+        moderators = None
     new_path = f'/r/{subreddit.name}/new/'
-    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "new_path": new_path})
+    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "new_path": new_path,"moderators": moderators})
 
 
 def subreddithot(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id).order_by("-score")
+    if request.user.is_authenticated:
+        moderators = Moderator.objects.filter(user=request.user)
+        moderators = [moderator.user for moderator in moderators]
+    else:
+        moderators = None
     hot_path = f'/r/{subreddit.name}/hot/'
+<<<<<<< HEAD
     return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path})
+=======
+    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path,"moderators": moderators})
+
+>>>>>>> 63172013f819562936d952e2228a7719b1cbd317

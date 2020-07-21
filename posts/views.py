@@ -10,8 +10,8 @@ from comments.forms import AddCommentForm
 
 # Create your views here.
 def add_post(request, name):
-    html = "addpost.html"
-
+    html = "subreddit.html"
+    subreddit = SubReddit.objects.get(name=name)
     if request.method == "POST":
         form = AddPostForm(request.POST)
         author = RedditUser.objects.get(id=request.user.id)
@@ -31,7 +31,7 @@ def add_post(request, name):
 
     form = AddPostForm()
 
-    return render(request, html, {"form": form})
+    return render(request, html, {"form": form,"subreddit":subreddit})
 
 
 @login_required
@@ -73,12 +73,7 @@ def postview(request, id, name):
                 post=post,
                 parent=parent,
             )
-
-            
-
             return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
-
-
     form = AddCommentForm()
     return render(request, 'post.html',
                   {'post': post, 'comments': comments, 'form': form})
