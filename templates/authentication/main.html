@@ -1,15 +1,15 @@
 <head>
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Reddit</title>
+  <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Reddit</title>
+  <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
 <h1>Reddit</h1>
 
@@ -29,7 +29,6 @@
     <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'">
         New </label>
 </div>
-
 
 {% elif request.path == '/hot/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -55,6 +54,8 @@
     <div class="col-9">
         {% include 'templates/posts/posts.html' %}
     </div>
+
+<button><a href="/following/">following</a></button>
 
     <div class="col">
         <h1>Subreddits ({{sub_r_count}})</h1>
