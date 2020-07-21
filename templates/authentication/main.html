@@ -11,16 +11,30 @@
   <title>Reddit</title>
   <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
-<h1>Reddit</h1>
 
-{% if user.is_authenticated %}
-<a href="/logout?next={{ request.path }}">Logout</a> <br />
-<a href="/addsubreddit/">Create Subreddit</a>
+  <div class="row">
+    <div class="col-sm-9"></div>
+    <div class="col-sm-3">
+        {% if user.is_authenticated %}
+        Logged in as : {{user}}
+<a href="/logout?next={{ request.path }}">
+Logout</a> <br />
 {%else%}
 <a href="/login?next={{ request.path }}">Login</a>
 {%endif%}
+    </div>
+  </div>
 
-<p>
+        <hr style="margin:0;">
+  <div class="row">
+
+      <div class="col-sm-1">  </div>
+    <div class="col-sm-10" style="height:20vh;margin:0;text-align:center"><h1 style="font-size:100px;">Reddit</h1></div>
+      <div class="col-sm-1"></div>
+  </div>
+
+<hr>
+<div style="margin-left:50px;">
     {% if request.path == '/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary active"> <input type="radio" name="options" id="option1" checked> All </label>
@@ -48,19 +62,31 @@
     <label class="btn btn-secondary active"> <input type="radio" name="options" id="option3" checked> New </label>
 </div>
 {% endif %}
+</div>
 </p>
 
 <div class="row">
-    <div class="col-9">
+    <div class="col-8" style="margin-left:40px;">
         {% include 'templates/posts/posts.html' %}
     </div>
 
-<button><a href="/following/">following</a></button>
-
-    <div class="col">
-        <h1>Subreddits ({{sub_r_count}})</h1>
+    <div class="col-3">
+        <div class="card">
+        <h4 style="text-align:center;margin-top:10px;margin-bottom:0px;">Subreddits ({{sub_r_count}})</h4>
+            <hr>
+          
+<!-- <button><a href="/following/">following</a></button> -->
+          
         {% for subreddit in subreddits %}
-        <p><a href="/r/{{subreddit.name}}/">{{subreddit}}</a></p>
+
+        <p style="margin:10px;"><a href="/r/{{subreddit.name}}/">/r/{{subreddit}}</a></p>
+
+
         {% endfor %}
+            </div>
+        <p></p>
+    {% if user.is_authenticated %}
+        <button type="button" class="btn btn-success" style="width:100%"><a href="/addsubreddit/" style="text-decoration:none;color:white;">Create Community</a></button>
+    {%endif%}
     </div>
 </div>

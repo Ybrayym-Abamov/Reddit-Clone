@@ -11,15 +11,30 @@
     <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
 
-<h1><a href="/r/{{subreddit.name}}" style="text-decoration:none; color:black">r/{{subreddit.name}}</a></h1>
-{% if user.is_authenticated %}
-<a href="/logout?next={{ request.path }}">Logout</a> <br/>
-<a href="addpost/">Post</a>
+  <div class="row">
+  <div class="col-sm-2" align="center"><a href="/">Back to home</a></div>
+    <div class="col-sm-7"></div>
+    <div class="col-sm-3">
+        {% if user.is_authenticated %}
+        Logged in as : {{user}}
+<a href="/logout?next={{ request.path }}">
+Logout</a> <br />
 {%else%}
 <a href="/login?next={{ request.path }}">Login</a>
 {%endif%}
-<a href="/">Home</a>
+    </div>
+  </div>
+
+        <hr style="margin:0;">
+  <div class="row" style="text-align:center">
+      <div class="col-1"></div>
+    <div class="col-lg-10" style="height:20vh;margin:0;width:100vw;"><h1 style="font-size:100px;">{{subreddit.name}}</h1></div>
+      <div class="col-1"></div>
+  </div>
+
+<hr>
 <p>
+  <div style="margin-left:50px;">
   {% if request.path == current_path %}
     <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn btn-secondary active"> <input type="radio" name="options" id="option1" checked> All </label>
@@ -42,10 +57,15 @@
       <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" > <a href="{% url 'subreddithot' subreddit.name %}" style="text-decoration: none; color:white">Hot</a> </label>
       <label class="btn btn-secondary active"> <input type="radio" name="options" id="option3" checked> New </label>
   </div>
+
   {% endif %}
+      </div>
   </p>
 
+
+      <div class="col-8" style="margin-left:20px">
 {% include 'templates/posts/posts.html' %}
+          </div>
 
 <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
