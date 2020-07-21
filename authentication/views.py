@@ -50,10 +50,11 @@ class SignUpView(View):
             return HttpResponseRedirect(reverse('homepage'))
 
 
-
 def index(request):
     posts = Post.objects.all()
-    return render(request, 'main.html', {'posts': posts})
+    subreddits = SubReddit.objects.all()
+    sub_r_count = SubReddit.objects.all().count()
+    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count})
 
 
 def new(request):

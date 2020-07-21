@@ -39,5 +39,19 @@ def add_subreddit(request):
 def subredditview(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id)
-    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts})
+    current_path = f'/r/{subreddit.name}/'
+    return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts, "current_path": current_path})
 
+
+def subredditnew(request, name):
+    subreddit = SubReddit.objects.get(name=name)
+    posts = Post.objects.filter(subreddit=subreddit.id).order_by("-date_created")
+    new_path = f'/r/{subreddit.name}/new/'
+    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "new_path": new_path})
+
+
+def subreddithot(request, name):
+    subreddit = SubReddit.objects.get(name=name)
+    posts = Post.objects.filter(subreddit=subreddit.id).order_by("-score")
+    hot_path = f'/r/{subreddit.name}/hot/'
+    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path})
