@@ -74,7 +74,7 @@ def postview(request, id, name):
                 parent=parent,
             )
 
-
+            
 
             return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
 

@@ -1,38 +1,43 @@
-
 {% load mptt_tags %}
 <ul class="root">
     {% recursetree comments %}
-<p>{{node.body}}.</p>
-<p>{{node.date_created}}
-<!--Setting up url redirection depending on if the user is logged in or not -->
-    <span>
-        {%if user %}
-     <button><a href="upvote/{{node.id}}?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{node.score}}
-     <button><a href="downvote/{{node.id}}?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {% else %}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{node.score}}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {%endif%}
-</span>
+    <p>{{node.body}}.</p>
+    {% if node.user == request.user %}
+    <button><a href="/delete/{{node.id}}" style="text-decoration: none; color: red">Delete</a></button>
+    {% endif%}
+    {{node.id}}
+    <p>{{node.date_created}}
+        <!--Setting up url redirection depending on if the user is logged in or not -->
+        <span>
+            {%if user %}
+            <button><a href="upvote/{{node.id}}?next={{ request.path }}"
+                    style="text-decoration:none; color:green">⇧</a></button>
+            {{node.score}}
+            <button><a href="downvote/{{node.id}}?next={{ request.path }}"
+                    style="text-decoration:none; color:red">⇩</a></button>
+            {% else %}
+            <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+            {{node.score}}
+            <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+            {%endif%}
+        </span>
     </p>
-{%if user.is_authenticated%}
-<form method="post">
+    {%if user.is_authenticated%}
+    <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-    <input type="hidden" name="comment_id" value="{{ node.id }}">
+        <input type="hidden" name="comment_id" value="{{ node.id }}">
         <input type="submit" value="Reply to comment">
     </form>
-{%endif%}
+    {%endif%}
 
-            {% if not node.is_leaf_node %}
-            <blockquote class="blockquote">
-                <ul class="children">
-                    {{ children }}
-                </ul>
-            </blockquote>
+    {% if not node.is_leaf_node %}
+    <blockquote class="blockquote">
+        <ul class="children">
+            {{ children }}
+        </ul>
+    </blockquote>
 
-            {% endif %}
+    {% endif %}
     {% endrecursetree %}
 </ul>

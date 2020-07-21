@@ -43,11 +43,9 @@ def subredditview(request, name):
     return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts, "current_path": current_path})
 
 
-
 def follow_subreddit(request, name):
     user = request.user
     subreddit = SubReddit.objects.get(name=name)
-
     if FollowReddit.objects.filter(user=user).filter(reddit=subreddit).exists():
         print("i exist")
         FollowReddit.objects.filter(user=user).filter(
@@ -63,6 +61,7 @@ def follow_subreddit(request, name):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+
 def subredditnew(request, name):
     subreddit = SubReddit.objects.get(name=name)
     posts = Post.objects.filter(subreddit=subreddit.id).order_by("-date_created")
@@ -75,4 +74,3 @@ def subreddithot(request, name):
     posts = Post.objects.filter(subreddit=subreddit.id).order_by("-score")
     hot_path = f'/r/{subreddit.name}/hot/'
     return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path})
-
