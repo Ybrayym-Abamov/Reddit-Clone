@@ -3,14 +3,14 @@
     <div id="hidden" style="display:none;">
         {{ form.body }}
     </div>
-    <button onclick="myFunction()" id="reply">Comment</button>
+    <button onclick="zFunction()" id="reply">Comment</button>
     <p>
     <input id="hiddenbutton" style="display:none;" type="submit" value="Add comment">
 </form>
 
 <script>
 
-  function myFunction() {
+  function zFunction() {
       let x = document.getElementById("hidden");
       if (x.style.display === "none") {
         x.style.display = "block";
