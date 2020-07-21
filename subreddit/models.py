@@ -18,3 +18,13 @@ class SubReddit(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class FollowReddit(models.Model):
+    user = models.ForeignKey(
+        RedditUser, related_name='target_user', on_delete=models.CASCADE)
+    reddit = models.ForeignKey(
+        SubReddit, related_name='target_reddit', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ('user', 'reddit',)

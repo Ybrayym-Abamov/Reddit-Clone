@@ -1,15 +1,15 @@
 <head>
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Reddit</title>
+  <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Reddit</title>
+  <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
 </head>
 
   <div class="row">
@@ -44,7 +44,6 @@ Logout</a> <br />
         New </label>
 </div>
 
-
 {% elif request.path == '/hot/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
     <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All
@@ -75,6 +74,9 @@ Logout</a> <br />
         <div class="card">
         <h4 style="text-align:center;margin-top:10px;margin-bottom:0px;">Subreddits ({{sub_r_count}})</h4>
             <hr>
+          
+<!-- <button><a href="/following/">following</a></button> -->
+          
         {% for subreddit in subreddits %}
 
         <p style="margin:10px;"><a href="/r/{{subreddit.name}}/">/r/{{subreddit}}</a></p>
