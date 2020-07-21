@@ -1,27 +1,53 @@
-
-<div class="card" style="width: 75rem">
-
-    <div class="card-body">
-        {% for post in posts %}
-<h3>
+<div class="card" style="width: 75rem;">
+  <div class="card-body">
+    {% for post in posts %}
+    <h3>
+      <ul>
+        <li>
+          <a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a>
+          - <a href="/r/{{post.subreddit}}">r/{{ post.subreddit }}</a>-
+          <a href="/follow/{{post.subreddit}}">Follow</a>
+        </li>
+      </ul>
+    </h3>
     <ul>
-     <li><a href="/r/{{post.subreddit}}/post/{{post.id}}">{{ post.title }}</a> - <a href="/r/{{post.subreddit}}" >r/{{ post.subreddit }}</a></li>
- </ul>
-</h3>
-<ul>
-    {{post.body}}
-    <span>
+      {{post.body}}
+      <span>
         {%if user.is_authenticated %}
-     <button><a href="/upvote/{{post.id}}?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+        <button>
+          <a
+            href="/upvote/{{post.id}}?next={{ request.path }}"
+            style="text-decoration: none; color: green;"
+            >⇧</a
+          >
+        </button>
         {{post.score}}
-     <button><a href="/downvote/{{post.id}}?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+        <button>
+          <a
+            href="/downvote/{{post.id}}?next={{ request.path }}"
+            style="text-decoration: none; color: red;"
+            >⇩</a
+          >
+        </button>
         {% else %}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+        <button>
+          <a
+            href="/login?next={{ request.path }}"
+            style="text-decoration: none; color: green;"
+            >⇧</a
+          >
+        </button>
         {{post.score}}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+        <button>
+          <a
+            href="/login?next={{ request.path }}"
+            style="text-decoration: none; color: red;"
+            >⇩</a
+          >
+        </button>
         {%endif%}
-    </span>
-</ul>
-{% endfor %}
-    </div>
+      </span>
+    </ul>
+    {% endfor %}
+  </div>
 </div>

@@ -3,7 +3,7 @@ from subreddit.models import SubReddit
 from subreddit.forms import AddSubRedditForm
 from authentication.models import RedditUser
 from posts.models import Post
-from subreddit.models import Moderator
+from subreddit.models import Moderator, FollowReddit
 from django.contrib.auth.decorators import login_required
 
 
@@ -41,3 +41,22 @@ def subredditview(request, name):
     posts = Post.objects.filter(subreddit=subreddit.id)
     return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts})
 
+
+def follow_subreddit(request, name):
+    user = request.user
+    subreddit = SubReddit.objects.get(name=name)
+
+    if FollowReddit.objects.filter(user=user).filter(reddit=subreddit).exists():
+        print("i exist")
+        FollowReddit.objects.filter(user=user).filter(
+            reddit=subreddit).delete()
+        print("i was deleted")
+    else:
+        print("i do not exsist")
+        FollowReddit.objects.create(
+            user=user,
+            reddit=subreddit
+        )
+        print("i am now created")
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

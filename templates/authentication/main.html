@@ -1,15 +1,30 @@
 <head>
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Reddit</title>
+  <link
+    rel="icon"
+    href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg"
+    type="image/x-icon"
+  />
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <title>Reddit</title>
-    <link rel="icon" href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg" type="image/x-icon">
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+    crossorigin="anonymous"
+  />
+  <title>Reddit</title>
+  <link
+    rel="icon"
+    href="https://cdn.worldvectorlogo.com/logos/reddit-2.svg"
+    type="image/x-icon"
+  />
 </head>
 <h1>Reddit</h1>
 
@@ -18,29 +33,83 @@
 <a href="/addsubreddit/">Create Subreddit</a>
 {%else%}
 <a href="/login?next={{ request.path }}">Login</a>
-{%endif%}
-
-{% if request.path == '/' %}
+{%endif%} {% if request.path == '/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary active"> <input type="radio" name="options" id="option1" checked> All </label>
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'"> Hot </label> 
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'"> New </label>
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="option1" checked /> All
+  </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option2"
+      onclick="location.href='/hot/'"
+    />
+    Hot
+  </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option3"
+      onclick="location.href='/new/'"
+    />
+    New
+  </label>
 </div>
 
 {% elif request.path == '/hot/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All </label>
-    <label class="btn btn-secondary active"> <input type="radio" name="options" id="option2" checked> Hot </label> 
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option3" onclick="location.href='/new/'"> New </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option1"
+      onclick="location.href='/'"
+    />
+    All
+  </label>
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="option2" checked /> Hot
+  </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option3"
+      onclick="location.href='/new/'"
+    />
+    New
+  </label>
 </div>
 
 {% elif request.path == '/new/' %}
 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option1" onclick="location.href='/'"> All </label>
-    <label class="btn btn-secondary"> <input type="radio" name="options" id="option2" onclick="location.href='/hot/'"> Hot </label>
-    <label class="btn btn-secondary active"> <input type="radio" name="options" id="option3" checked> New </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option1"
+      onclick="location.href='/'"
+    />
+    All
+  </label>
+  <label class="btn btn-secondary">
+    <input
+      type="radio"
+      name="options"
+      id="option2"
+      onclick="location.href='/hot/'"
+    />
+    Hot
+  </label>
+  <label class="btn btn-secondary active">
+    <input type="radio" name="options" id="option3" checked /> New
+  </label>
 </div>
 
 {% endif %}
+
+<button><a href="/following/">following</a></button>
 
 {% include 'templates/posts/posts.html' %}
