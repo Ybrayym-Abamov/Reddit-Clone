@@ -88,9 +88,5 @@ def subreddithot(request, name):
     else:
         moderators = None
     hot_path = f'/r/{subreddit.name}/hot/'
-<<<<<<< HEAD
-    return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path})
-=======
     return render(request, 'subreddit.html', {'posts': posts, 'subreddit': subreddit, "hot_path": hot_path,"moderators": moderators})
 
->>>>>>> 63172013f819562936d952e2228a7719b1cbd317
