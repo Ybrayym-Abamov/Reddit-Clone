@@ -12,7 +12,7 @@
 </head>
 
   <div class="row">
-  <div class="col-sm-2" align="center"><a href="/">Back to home</a></div>
+  <div class="col-sm-2" align="center"><a href="/">Home</a></div>
     <div class="col-sm-7"></div>
     <div class="col-sm-3">
         {% if user.is_authenticated %}
@@ -20,7 +20,8 @@
 <a href="/logout?next={{ request.path }}">
 Logout</a> <br />
 {%else%}
-<a href="/login?next={{ request.path }}">Login</a>
+<a href="/login?next={{ request.path }}">Login</a> |
+<a href="/signup?next={{request.path}}"> Sign up </a>
 {%endif%}
     </div>
   </div>

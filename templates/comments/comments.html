@@ -5,72 +5,82 @@
 <ul class="root">
     {% recursetree comments %}
 
-<p>{{node.body}}</p>
-<p>
-<!--Setting up url redirection depending on if the user is logged in or not -->
-    <span>
-        {%if user %}
-     <button><a href="upvote/{{node.id}}?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{node.score}}
-     <button><a href="downvote/{{node.id}}?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {% else %}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
-        {{node.score}}
-    <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
-        {%endif%}
-</span>
-    Created on {{node.date_created}}
-    by {{node.user}}
-    </p>
-{%if user.is_authenticated%}
-    <form method="post">
-    {% csrf_token %}
-    <div id="body{{node.id}}" style="display:none;">{{ form.body }}</div>
-    <button onclick="myFunction({{node.id}})" id="reply{{node.id}}">Comment</button>
-        <input type="hidden" name="comment_id" value="{{ node.id }}">
+    <p>{{node.body}}</p>
     <p>
-    <input id="hiddenbutton{{node.id}}" style="display:none;" type="submit" value="Add comment">
-        <script>
-              function myFunction(id) {
-      let x = document.getElementById(`body${id}`);
-      if (x.style.display === "none") {
-        x.style.display = "block";
-      } else {
-        x.style.display = "none";
-      }
-      let z = document.getElementById(`hiddenbutton${id}`);
-      if (z.style.display === "none") {
-        z.style.display = "block";
-      } else {
-        z.style.display = "none";
-      }
-      let f = document.getElementById(`reply${id}`);
-      if (f.style.display === "none") {
-        f.style.display = "block";
-      } else {
-        f.style.display = "none";
-      }
-      }
-        </script>
-</form>
+        <!--Setting up url redirection depending on if the user is logged in or not -->
+        <span>
+            {%if user %}
+            <button><a href="upvote/{{node.id}}?next={{ request.path }}"
+                    style="text-decoration:none; color:green">⇧</a></button>
+            {{node.score}}
+            <button><a href="downvote/{{node.id}}?next={{ request.path }}"
+                    style="text-decoration:none; color:red">⇩</a></button>
+            {% else %}
+            <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:green">⇧</a></button>
+            {{node.score}}
+            <button><a href="/login?next={{ request.path }}" style="text-decoration:none; color:red">⇩</a></button>
+            {%endif%}
+        </span>
+        Created on {{node.date_created}}
+        by {{node.user}}
+    </p>
+    {%if user.is_authenticated%}
+    <form method="post">
+        {% csrf_token %}
+        <div id="body{{node.id}}" style="display:none;">{{ form.body }}</div>
+        <button onclick="myFunction({{node.id}})" id="reply{{node.id}}">Comment</button>
+        <input type="hidden" name="comment_id" value="{{ node.id }}">
+        {% if node.user == request.user%}
+            <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
+        {%else%}
+            {% for moderator in moderators %}
+                {% if request.user == moderator %}
+                    <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
+                {% endif %}
+            {% endfor %}
+        {%endif%}
+        <p>
+            <input id="hiddenbutton{{node.id}}" style="display:none;" type="submit" value="Add comment">
+            <script>
+                function myFunction(id) {
+                    let x = document.getElementById(`body${id}`);
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
+                    }
+                    let z = document.getElementById(`hiddenbutton${id}`);
+                    if (z.style.display === "none") {
+                        z.style.display = "block";
+                    } else {
+                        z.style.display = "none";
+                    }
+                    let f = document.getElementById(`reply${id}`);
+                    if (f.style.display === "none") {
+                        f.style.display = "block";
+                    } else {
+                        f.style.display = "none";
+                    }
+                }
+            </script>
+    </form>
+    {%endif%}
 <hr>
-{%endif%}
 
 
 
-            {% if not node.is_leaf_node %}
+    {% if not node.is_leaf_node %}
 
-                <ul class="children" style="border-left: 1px solid grey">
+    <ul class="children" style="border-left: 1px solid grey">
 
-                    {{ children }}
+        {{ children }}
 
-                </ul>
+    </ul>
 
 
-            {% endif %}
+    {% endif %}
 
     {% endrecursetree %}
 
 
 </ul>
-
