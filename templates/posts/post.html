@@ -14,7 +14,7 @@
 
 
   <div class="row">
-  <div class="col-sm-3" align="center"><a href="/">Back to home</a>
+  <div class="col-sm-3" align="center"><a href="/">Home</a> | 
   <a href="/r/{{post.subreddit.name}}/">Back to Subreddit</a>
   </div>
     <div class="col-sm-6"></div>
@@ -24,7 +24,8 @@
 <a href="/logout?next={{ request.path }}">
 Logout</a> <br />
 {%else%}
-<a href="/login?next={{ request.path }}">Login</a>
+<a href="/login?next={{ request.path }}">Login</a> | 
+<a href="/signup?next={{request.path}}"> Sign up </a>
 {%endif%}
     </div>
   </div>

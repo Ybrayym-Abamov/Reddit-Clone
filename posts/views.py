@@ -3,7 +3,7 @@ from posts.models import Post
 from posts.forms import AddPostForm
 from authentication.models import RedditUser
 from django.contrib.auth.decorators import login_required
-from subreddit.models import SubReddit
+from subreddit.models import SubReddit, Moderator
 from comments.models import Comment
 from comments.forms import AddCommentForm
 
@@ -75,8 +75,17 @@ def postview(request, id, name):
             )
             return HttpResponseRedirect(reverse('postview', kwargs={'name': name, 'id': id}))
     form = AddCommentForm()
+
+    if request.user.is_authenticated:
+        moderators = Moderator.objects.filter(user=request.user)
+        moderators = [moderator.user for moderator in moderators]
+        commentator = Comment.objects.filter(user=request.user)
+        commentator = [c.user for c in commentator]
+    else:
+        moderators = None
+        commentator = None
     return render(request, 'post.html',
-                  {'post': post, 'comments': comments, 'form': form})
+                  {'post': post, 'comments': comments, 'form': form, "moderators": moderators, "commentator": commentator})
 
 
 def delete_view(request, id):

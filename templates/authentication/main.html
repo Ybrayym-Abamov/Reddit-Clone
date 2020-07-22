@@ -20,7 +20,8 @@
 <a href="/logout?next={{ request.path }}">
 Logout</a> <br />
 {%else%}
-<a href="/login?next={{ request.path }}">Login</a>
+<a href="/login?next={{ request.path }}">Login</a> | 
+<a href="/signup?next={{request.path}}"> Sign up </a>
 {%endif%}
     </div>
   </div>

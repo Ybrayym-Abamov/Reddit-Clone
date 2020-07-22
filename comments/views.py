@@ -22,3 +22,9 @@ def down_vote(request, name, id, id2):
     down_post.score -= 1
     down_post.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+def delete_view(request, id):
+    comment = Comment.objects.get(id=id)
+    comment.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -48,11 +48,9 @@ def subredditview(request, name):
     return render(request, 'subreddit.html', {"subreddit": subreddit, "posts": posts, "current_path": current_path,"moderators": moderators})
 
 
-
 def follow_subreddit(request, name):
     user = request.user
     subreddit = SubReddit.objects.get(name=name)
-
     if FollowReddit.objects.filter(user=user).filter(reddit=subreddit).exists():
         print("i exist")
         FollowReddit.objects.filter(user=user).filter(
@@ -67,6 +65,7 @@ def follow_subreddit(request, name):
         print("i am now created")
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 def subredditnew(request, name):
     subreddit = SubReddit.objects.get(name=name)
