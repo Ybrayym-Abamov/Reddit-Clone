@@ -6,7 +6,7 @@ from authentication.forms import LoginForm, SignUpForm
 from posts.models import Post
 from django.contrib.auth.forms import UserCreationForm
 from authentication.models import RedditUser
-from subreddit.models import SubReddit, FollowReddit
+from subreddit.models import SubReddit
 
 
 class LoginView(View):
@@ -54,21 +54,24 @@ def index(request):
     posts = Post.objects.all()
     subreddits = SubReddit.objects.all()
     sub_r_count = SubReddit.objects.all().count()
-    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count})
+    subscribe_list = SubReddit.objects.filter(subscriber=request.user.id)
+    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count, "subscribe_list": subscribe_list})
 
 
 def new(request):
     posts = Post.objects.all().order_by("-date_created")
     subreddits = SubReddit.objects.all()
     sub_r_count = SubReddit.objects.all().count()
-    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count})
+    subscribe_list = SubReddit.objects.filter(subscriber=request.user.id)
+    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count, "subscribe_list": subscribe_list})
 
 
 def hot(request):
     posts = Post.objects.all().order_by("-score")
     subreddits = SubReddit.objects.all()
     sub_r_count = SubReddit.objects.all().count()
-    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count})
+    subscribe_list = SubReddit.objects.filter(subscriber=request.user.id)
+    return render(request, 'main.html', {'posts': posts, 'subreddits': subreddits, "sub_r_count": sub_r_count, "subscribe_list": subscribe_list})
 
 
 def following(request):

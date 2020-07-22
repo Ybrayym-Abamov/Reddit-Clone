@@ -31,13 +31,13 @@
         <button onclick="myFunction({{node.id}})" id="reply{{node.id}}">Comment</button>
         <input type="hidden" name="comment_id" value="{{ node.id }}">
         {% if node.user == request.user%}
-            <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
+        <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
         {%else%}
-            {% for moderator in moderators %}
-                {% if request.user == moderator %}
-                    <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
-                {% endif %}
-            {% endfor %}
+        {% for moderator in moderators %}
+        {% if request.user == moderator %}
+        <button><a href="/delete_comment/{{node.id}}/" style="text-decoration: none; color: red">Delete</a></button>
+        {% endif %}
+        {% endfor %}
         {%endif%}
         <p>
             <input id="hiddenbutton{{node.id}}" style="display:none;" type="submit" value="Add comment">
@@ -65,9 +65,7 @@
             </script>
     </form>
     {%endif%}
-<hr>
-
-
+    <hr>
 
     {% if not node.is_leaf_node %}
 
@@ -77,10 +75,8 @@
 
     </ul>
 
-
     {% endif %}
 
     {% endrecursetree %}
-
 
 </ul>
