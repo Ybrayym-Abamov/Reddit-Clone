@@ -114,7 +114,7 @@
       <div style="padding: 0px 0px 15px 5px;">{{subreddit.description}}</div>
     </div>
     {% if user.is_authenticated %}
-    <a href="addpost/" style="text-decoration:none;color:white;"><button type="button" class="btn btn-success"
+    <a href="/r/{{subreddit.name}}/addpost/" style="text-decoration:none;color:white;"><button type="button" class="btn btn-success"
         style="width:100%;margin: 10px 0px">Create Post</button></a>
     {% if subreddit not in subscribe_list %}
     <a href="/subscribed/{{subreddit.id}}/" style="text-decoration:none;color:white;"><button type="button"
@@ -143,7 +143,7 @@
       <div style="padding: 0px 0px 15px 5px;">{{subreddit.description}}</div>
     </div>
     {% if user.is_authenticated %}
-    <a href="addpost/" style="text-decoration:none;color:white;"><button type="button" class="btn btn-success"
+    <a href="/r/{{subreddit.name}}/addpost/" style="text-decoration:none;color:white;"><button type="button" class="btn btn-success"
         style="width:100%;margin: 10px 0px">Create Post</button></a>
     {% if subreddit not in subscribe_list %}
     <a href="/subscribed/{{subreddit.id}}/" style="text-decoration:none;color:white;"><button type="button"
