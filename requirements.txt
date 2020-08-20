@@ -11,7 +11,7 @@ gunicorn==20.0.4
 pathspec==0.8.0
 pycodestyle==2.6.0
 pytz==2020.1
--e git+git@github.com:Ybrayym-Abamov/Reddit-Clone.git@94033554831d347acc9d4f3cf79d1a275a571fec#egg=reddit_clone
+reddit-clone @ file:///Users/abraham/Documents/KENZIE%20PROJECTS/BACK-END/Reddit-Clone
 regex==2020.6.8
 sqlparse==0.3.1
 toml==0.10.1
