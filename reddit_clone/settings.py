@@ -26,7 +26,7 @@ SECRET_KEY = '$rp4qw+_m)rfat1ofd0m^*s&-l-wq9-hx%g!6t*ip!)kr2)o&0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://ruby-redditclone.herokuapp.com/"]
 
 # Application definition
 
