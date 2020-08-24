@@ -24,7 +24,7 @@ SECRET_KEY = '$rp4qw+_m)rfat1ofd0m^*s&-l-wq9-hx%g!6t*ip!)kr2)o&0'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True if os.environ['MODE'] == 'dev' else False
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -130,6 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# STATIC_ROOT = os.path.join(BASE_DIR, static)
 
 AUTH_USER_MODEL = 'authentication.RedditUser'
 
