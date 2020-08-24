@@ -17,7 +17,6 @@ pathspec==0.8.0
 pycodestyle==2.6.0
 pylint==2.5.3
 pytz==2020.1
--e git+git@github.com:Ybrayym-Abamov/Reddit-Clone.git@55c87c6e062b6054ce0da905d460944def24596b#egg=reddit_clone
 regex==2020.6.8
 six==1.15.0
 sqlparse==0.3.1
