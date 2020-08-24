@@ -136,3 +136,5 @@ STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'authentication.RedditUser'
 
 LOGIN_URL = '/login/'
+
+CORS_ORIGIN_ALLOW_ALL = True
