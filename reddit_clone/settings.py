@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -142,3 +143,5 @@ AUTH_USER_MODEL = 'authentication.RedditUser'
 LOGIN_URL = '/login/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+django_heroku.settings(locals())
